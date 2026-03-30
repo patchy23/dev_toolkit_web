@@ -35,7 +35,7 @@ function XmlNode({ node, depth = 0 }: { node: Node; depth?: number }) {
     if (!text) return null;
     return (
         <div className="code-line whitespace-pre">
-          {indent}<span className="text-[#C9A66B] dark:text-[#D4B87A]">{text}</span>
+          {indent}<span className="inline-block w-4 mr-1"></span><span className="text-[#C9A66B] dark:text-[#D4B87A]">{text}</span>
         </div>
     );
   }
@@ -56,7 +56,7 @@ function XmlNode({ node, depth = 0 }: { node: Node; depth?: number }) {
     if (isSelfClosing) {
       return (
           <div className="code-line whitespace-pre">
-            {indent}<span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&lt;{tagName}{attrs}/&gt;</span>
+            {indent}<span className="inline-block w-4 mr-1"></span><span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&lt;{tagName}{attrs}/&gt;</span>
           </div>
       );
     }
@@ -64,7 +64,7 @@ function XmlNode({ node, depth = 0 }: { node: Node; depth?: number }) {
     if (isTextOnly) {
       return (
           <div className="code-line whitespace-pre">
-            {indent}
+            {indent}<span className="inline-block w-4 mr-1"></span>
             <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&lt;{tagName}{attrs}&gt;</span>
             <span className="text-[#C9A66B] dark:text-[#D4B87A]">{childNodes[0].textContent?.trim()}</span>
             <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&lt;/{tagName}&gt;</span>
@@ -83,7 +83,6 @@ function XmlNode({ node, depth = 0 }: { node: Node; depth?: number }) {
               {isExpanded ? <ChevronDown className="w-3 h-3 text-[#9A9A9A]" /> : <ChevronRight className="w-3 h-3 text-[#9A9A9A]" />}
             </button>
             <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&lt;{tagName}{attrs}&gt;</span>
-            {/* 这里加上了 nodes 数量统计 */}
             {!isExpanded && <span className="text-[#9A9A9A] ml-2">... {childNodes.length} nodes &lt;/{tagName}&gt;</span>}
           </div>
           {isExpanded && (
@@ -95,7 +94,7 @@ function XmlNode({ node, depth = 0 }: { node: Node; depth?: number }) {
           )}
           {isExpanded && (
               <div className="code-line whitespace-pre">
-                {indent}<span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&lt;/{tagName}&gt;</span>
+                {indent}<span className="inline-block w-4 mr-1"></span><span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&lt;/{tagName}&gt;</span>
               </div>
           )}
         </>
@@ -258,7 +257,7 @@ export default function XmlFormatter() {
               {parsedDoc && mode === 'format' ? (
                   <div className="p-4 font-mono text-sm line-counter">
                     <SharedStyles />
-                    {xmlDeclaration && <div className="code-line whitespace-pre"><span className="text-[#7A8BA8] dark:text-[#8BA4C9]">{xmlDeclaration}</span></div>}
+                    {xmlDeclaration && <div className="code-line whitespace-pre"><span className="inline-block w-4 mr-1"></span><span className="text-[#7A8BA8] dark:text-[#8BA4C9]">{xmlDeclaration}</span></div>}
                     {Array.from(parsedDoc.childNodes).map((node, idx) => <XmlNode key={idx} node={node} />)}
                   </div>
               ) : output ? (

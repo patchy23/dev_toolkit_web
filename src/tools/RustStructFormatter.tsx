@@ -75,17 +75,17 @@ function RustNodeRenderer({ node }: { node: CodeBlockNode }) {
     const [isExpanded, setIsExpanded] = useState(true);
     const isBlock = node.children.length > 0 || node.footer;
 
-    if (!isBlock) {
-        return (
-            <div className="code-line whitespace-pre">
-                <span className="text-[#7A9E7A] dark:text-[#8FBA8F]">{node.header}</span>
-            </div>
-        );
-    }
-
     const indentSpaces = node.header.search(/\S/);
     const indentStr = indentSpaces > 0 ? ' '.repeat(indentSpaces) : '';
     const headerText = node.header.trim();
+
+    if (!isBlock) {
+        return (
+            <div className="code-line whitespace-pre">
+                {indentStr}<span className="inline-block w-4 mr-1"></span><span className="text-[#7A9E7A] dark:text-[#8FBA8F]">{headerText}</span>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -98,7 +98,6 @@ function RustNodeRenderer({ node }: { node: CodeBlockNode }) {
                     {isExpanded ? <ChevronDown className="w-3 h-3 text-[#9A9A9A]" /> : <ChevronRight className="w-3 h-3 text-[#9A9A9A]" />}
                 </button>
                 <span className="text-[#C9A66B] dark:text-[#D4B87A]">{headerText}</span>
-                {/* 这里加上了 items 数量统计 */}
                 {!isExpanded && <span className="text-[#9A9A9A] ml-2">... {node.children.length} items {node.footer?.trim()}</span>}
             </div>
             {isExpanded && (
@@ -108,7 +107,7 @@ function RustNodeRenderer({ node }: { node: CodeBlockNode }) {
             )}
             {isExpanded && node.footer && (
                 <div className="code-line whitespace-pre">
-                    <span className="text-[#C9A66B] dark:text-[#D4B87A]">{node.footer}</span>
+                    {indentStr}<span className="inline-block w-4 mr-1"></span><span className="text-[#C9A66B] dark:text-[#D4B87A]">{node.footer.trim()}</span>
                 </div>
             )}
         </>

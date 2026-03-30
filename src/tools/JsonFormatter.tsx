@@ -40,7 +40,7 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
   if (data === null) {
     return (
         <div className="code-line whitespace-pre">
-          {indent}
+          {indent}<span className="inline-block w-4 mr-1"></span>
           {keyName && <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&quot;{keyName}&quot;</span>}
           {keyName && ': '}
           <span className="text-[#9A9A9A] dark:text-[#B0B0B0]">null</span>
@@ -52,7 +52,7 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
   if (typeof data === 'boolean') {
     return (
         <div className="code-line whitespace-pre">
-          {indent}
+          {indent}<span className="inline-block w-4 mr-1"></span>
           {keyName && <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&quot;{keyName}&quot;</span>}
           {keyName && ': '}
           <span className="text-[#7A9E7A] dark:text-[#8FBA8F]">{data.toString()}</span>
@@ -64,7 +64,7 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
   if (typeof data === 'number') {
     return (
         <div className="code-line whitespace-pre">
-          {indent}
+          {indent}<span className="inline-block w-4 mr-1"></span>
           {keyName && <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&quot;{keyName}&quot;</span>}
           {keyName && ': '}
           <span className="text-[#C9A66B] dark:text-[#D4B87A]">{data}</span>
@@ -76,7 +76,7 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
   if (typeof data === 'string') {
     return (
         <div className="code-line whitespace-pre">
-          {indent}
+          {indent}<span className="inline-block w-4 mr-1"></span>
           {keyName && <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&quot;{keyName}&quot;</span>}
           {keyName && ': '}
           <span className="text-[#7A9E7A] dark:text-[#8FBA8F]">&quot;{data}&quot;</span>
@@ -89,7 +89,7 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
     if (data.length === 0) {
       return (
           <div className="code-line whitespace-pre">
-            {indent}
+            {indent}<span className="inline-block w-4 mr-1"></span>
             {keyName && <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&quot;{keyName}&quot;</span>}
             {keyName && ': '}
             []
@@ -107,7 +107,6 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
             {keyName && <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&quot;{keyName}&quot;</span>}
             {keyName && ': '}
             {'['}
-            {/* 修正了这里的右括号转义 */}
             {!isExpanded && <span className="text-[#9A9A9A] ml-2">... {data.length} items {']'}{!isLast && ','}</span>}
           </div>
           {isExpanded && (
@@ -117,7 +116,7 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
           )}
           {isExpanded && (
               <div className="code-line whitespace-pre">
-                {indent}{']'}{!isLast && ','}
+                {indent}<span className="inline-block w-4 mr-1"></span>{']'}{!isLast && ','}
               </div>
           )}
         </>
@@ -129,7 +128,7 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
     if (keys.length === 0) {
       return (
           <div className="code-line whitespace-pre">
-            {indent}
+            {indent}<span className="inline-block w-4 mr-1"></span>
             {keyName && <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&quot;{keyName}&quot;</span>}
             {keyName && ': '}
             {'{'} {'}'}
@@ -147,7 +146,6 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
             {keyName && <span className="text-[#7A8BA8] dark:text-[#8BA4C9]">&quot;{keyName}&quot;</span>}
             {keyName && ': '}
             {'{'}
-            {/* 修正了这里的右大括号转义 */}
             {!isExpanded && <span className="text-[#9A9A9A] ml-2">... {keys.length} keys {'}'}{!isLast && ','}</span>}
           </div>
           {isExpanded && (
@@ -157,7 +155,7 @@ function JsonNode({ data, keyName, depth = 0, isLast = true }: JsonNodeProps) {
           )}
           {isExpanded && (
               <div className="code-line whitespace-pre">
-                {indent}{'}'}{!isLast && ','}
+                {indent}<span className="inline-block w-4 mr-1"></span>{'}'}{!isLast && ','}
               </div>
           )}
         </>
