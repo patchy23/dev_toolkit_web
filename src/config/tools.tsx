@@ -12,9 +12,10 @@ import {
   Type,
   GitCompare,
   FileCheck,
-  Image,
+  Image, Code2,
 } from 'lucide-react';
 import type { ToolCategory } from '@/types/tools';
+
 
 // Lazy load tool components
 import { lazy } from 'react';
@@ -33,6 +34,7 @@ const TextStats = lazy(() => import('@/tools/TextStats'));
 const TextDiff = lazy(() => import('@/tools/TextDiff'));
 const FileHash = lazy(() => import('@/tools/FileHash'));
 const ImageToBase64 = lazy(() => import('@/tools/ImageToBase64'));
+const RustStructFormatter = lazy(() => import("@/tools/RustStructFormatter"));
 
 export const toolCategories: ToolCategory[] = [
   {
@@ -60,6 +62,13 @@ export const toolCategories: ToolCategory[] = [
         description: 'SQL 语句格式化和美化',
         icon: Database,
         component: SqlFormatter,
+      },
+      {
+        id: 'rust-formatter',
+        name: '结构体格式化',
+        description: '将单行的 Rust 结构体或 RON 文本格式化为树状层级结构',
+        icon: Code2,
+        component: RustStructFormatter,
       },
     ],
   },
