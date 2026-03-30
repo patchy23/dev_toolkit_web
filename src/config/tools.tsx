@@ -12,7 +12,7 @@ import {
   Type,
   GitCompare,
   FileCheck,
-  Image, Code2,
+  Image, Code2, Clock, Binary, Calendar, FileJson, Terminal, Shield,
 } from 'lucide-react';
 import type { ToolCategory } from '@/types/tools';
 
@@ -35,6 +35,12 @@ const TextDiff = lazy(() => import('@/tools/TextDiff'));
 const FileHash = lazy(() => import('@/tools/FileHash'));
 const ImageToBase64 = lazy(() => import('@/tools/ImageToBase64'));
 const RustStructFormatter = lazy(() => import("@/tools/RustStructFormatter"));
+const TimestampConverter = lazy(() => import('@/tools/TimestampConverter'));
+const BaseConverter = lazy(() => import('@/tools/BaseConverter'));
+const CronGenerator = lazy(() => import('@/tools/CronGenerator'));
+const JsonToTypes = lazy(() => import('@/tools/JsonToTypes'));
+const CurlToCode = lazy(() => import('@/tools/CurlToCode'));
+const PasswordGenerator = lazy(() => import('@/tools/PasswordGenerator'));
 
 export const toolCategories: ToolCategory[] = [
   {
@@ -105,6 +111,7 @@ export const toolCategories: ToolCategory[] = [
         icon: Key,
         component: JwtParser,
       },
+
     ],
   },
   {
@@ -125,6 +132,62 @@ export const toolCategories: ToolCategory[] = [
         description: '批量生成 UUID/GUID',
         icon: Fingerprint,
         component: UuidGenerator,
+      },
+      {
+        id: 'password-generator',
+        name: '密码生成器',
+        description: '生成强密码和随机字符串',
+        icon: Shield,
+        component: PasswordGenerator,
+      },
+    ],
+  },
+  {
+    id: 'converters',
+    name: '时间与转换',
+    icon: Clock,
+    tools: [
+      {
+        id: 'timestamp',
+        name: '时间戳转换',
+        description: 'Unix 时间戳与本地时间/UTC 时间转换',
+        icon: Clock,
+        component: TimestampConverter,
+      },
+      {
+        id: 'base-converter',
+        name: '进制转换',
+        description: '2/8/10/16 进制之间的相互转换',
+        icon: Binary,
+        component: BaseConverter,
+      },
+    ],
+  },
+  {
+    id: 'generators',
+    name: '代码生成与解析',
+    icon: Terminal,
+    tools: [
+      {
+        id: 'cron',
+        name: 'Cron 表达式',
+        description: 'Cron 表达式生成与解析，支持 5/6/7 位格式',
+        icon: Calendar,
+        component: CronGenerator,
+      },
+      {
+        id: 'json-to-types',
+        name: 'JSON 转类型定义',
+        description: '将 JSON 转换为 TypeScript、Rust、Go 等类型定义',
+        icon: FileJson,
+        component: JsonToTypes,
+      },
+      {
+        id: 'curl-to-code',
+        name: 'cURL 转代码',
+        description: '将 cURL 命令转换为多语言 HTTP 请求代码',
+        icon: Terminal,
+        component: CurlToCode,
       },
     ],
   },
